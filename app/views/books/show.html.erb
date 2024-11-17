@@ -1,0 +1,18 @@
+<div class="box_index">
+  <div class="success">
+   <%= flash[:notice] %>
+  </div>
+  <div class="flex_index">
+    <p><strong>Title:</strong></p>
+    <p><%= @book.title %></p>
+  </div>
+  <div class="flex_index">
+    <p><strong>Body:</strong></p>
+    <p><%= @book.body %></p>
+  </div>
+  <div class="url_index">
+    <%= link_to "Edit",  edit_book_path(@book.id)%>
+    |
+    <%= link_to "Back", books_path%>
+  </div>
+</div>

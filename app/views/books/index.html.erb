@@ -1,0 +1,54 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<h1 class="book">Books</h1>
+
+<table>
+  <thead>
+    <th><strong>Title</strong></th>
+    <th><strong>Body</strong></th>
+</thead>
+<tbody>
+  <% @books.each do |book| %>
+    <tr>
+
+        <td class="title"><%= book.title %></td>
+        <td class="body"><%= book.body %></td>
+  
+       <td class="url">
+          <%= link_to "Show", book_path(book.id) %>
+          <%= link_to "Edit", edit_book_path(book.id) %>
+          <%= link_to "Destroy", book_path(book.id), method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+  <% end %>
+</tbody>
+</table>
+
+<h2 class="new_book">New book</h2>
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %> errors prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @book do |f| %>
+  <div class="form">
+    <label class="new_title">Title</label>
+  <div class="text_title">
+    <%= f.text_field :title %>
+  </div>
+    <label class="new_body">Body</label>
+  <div class="area">
+    <%= f.text_area :body %>
+  </div>
+  </div>
+  <div class="submit">
+    <%= f.submit 'Create Book' %>
+  </div>
+<% end %>
